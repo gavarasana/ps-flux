@@ -2,13 +2,13 @@ import { handleResponse, handleError, handleOnlyOneResult } from "./apiUtils";
 const baseUrl = process.env.REACT_APP_API_URL + "/courses/";
 
 export function getCourses() {
-    fetch(baseUrl)
+    return fetch(baseUrl)
         .then(handleResponse)
         .catch(handleError);
 }
 
 export function getCoursesBySlug(slug) {
-    fetch(baseUrl + "?slug=" + slug)
+    return fetch(baseUrl + "?slug=" + slug)
         .then(handleOnlyOneResult)
         .catch(handleError);
 }

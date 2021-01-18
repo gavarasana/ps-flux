@@ -1,5 +1,3 @@
-import { courses } from "../../tools/mockData";
-
 export async function handleResponse(response) {
     if (response.ok) return response.json();
     if (response.status === 400) {
@@ -10,8 +8,8 @@ export async function handleResponse(response) {
 }
 
 export function handleError(error) {
-    console.error("API call failed. " + error)
-    throw new Error(error);
+    console.error("API call failed. " + error);
+    throw error;
 }
 
 export function handleOnlyOneResult(response) {
