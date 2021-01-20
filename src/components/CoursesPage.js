@@ -1,41 +1,24 @@
-import React from "react";
-//import { courses } from "../../tools/mockData";
+import React, { useEffect, useState } from "react";
+import CourseList from "./CourseList";
 import { getCourses } from "../api/courseApi";
+import { Link } from "react-router-dom";
 
-class CoursesPage extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {courses: []};
-    }
+function CoursesPage() {
 
-    componentDidMount() {
-        getCourses().then(courses => this.setState({courses: courses}));
-    }
+    const [courses, setCourses] = useState([]);
 
-    render() {
-        return (  <> <h2>Courses</h2>
-        <table className="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author Id</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                {this.state.courses.map(course => {
-                    return ( <tr key= {course.id}>
-                        <td>{course.title}</td>
-                        <td>{course.authorId}</td>
-                        <td>{course.category}</td>
-                    </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+    useEffect(() => {
+        getCourses().then(_courses => setCourses(_courses));
+    }, []);
+
+    return (
+        <>
+            <h2>Courses</h2>
+            <Link className="btn btn-primary" to="courses/add-new">Add New Course</Link>
+            <CourseList courses={courses}></CourseList>
         </>
-        );
-    }
+    );
+
 }
 
 export default CoursesPage;
