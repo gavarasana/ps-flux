@@ -72,11 +72,11 @@
     },
     {
       "id": 11,
-      "title": "Diamond Head, Honolulu",
-      "authorId": 2,
-      "category": "Biology",
-      "createdAt": 1611189867948,
-      "slug": "diamond-head-honolulu"
+      "title": "San Francisco downtown",
+      "authorId": 1,
+      "category": "Travel",
+      "createdAt": 1611230645124,
+      "slug": "san-francisco-downtown"
     }
   ],
   "authors": [
