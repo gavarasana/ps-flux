@@ -8,9 +8,13 @@ import NotFoundPage from "./NotFoundPage";
 import ManageCoursePage from "./ManageCoursePage";
 import { Route, Switch } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
     return (
         <div className="container-fluid">
+            <ToastContainer autoClose={3000} hideProgressBar={true} />
             <Header />
             <Switch>
                 <Route path="/" exact component={HomePage} />
