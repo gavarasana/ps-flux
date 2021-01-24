@@ -1,20 +1,6 @@
 {
   "courses": [
     {
-      "id": 1,
-      "title": "Securing React Apps with Auth0",
-      "slug": "react-auth0-authentication-security",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 2,
-      "title": "React: The Big Picture",
-      "slug": "react-big-picture",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
       "id": 3,
       "title": "Creating Reusable React Components",
       "slug": "react-creating-reusable-components",
@@ -39,7 +25,7 @@
       "id": 6,
       "title": "Building Applications in React and Flux",
       "slug": "react-flux-building-applications",
-      "authorId": 2,
+      "authorId": 1,
       "category": "JavaScript"
     },
     {
@@ -53,7 +39,7 @@
       "id": 8,
       "title": "Architecting Applications for the Real World",
       "slug": "architecting-applications-dotnet",
-      "authorId": 2,
+      "authorId": 1,
       "category": "Software Architecture"
     },
     {
@@ -62,21 +48,6 @@
       "slug": "career-reboot-for-developer-mind",
       "authorId": 1,
       "category": "Career"
-    },
-    {
-      "id": 10,
-      "title": "Web Component Fundamentals",
-      "slug": "web-components-shadow-dom",
-      "authorId": 1,
-      "category": "HTML5"
-    },
-    {
-      "id": 11,
-      "title": "Diamond Head",
-      "slug": "diamond-head",
-      "authorId": 2,
-      "category": "Biology",
-      "createdAt": 1611339793585
     }
   ],
   "authors": [
