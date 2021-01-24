@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import CourseList from "./CourseList";
 //import { getCourses } from "../api/courseApi";
 import courseStore from "../stores/courseStore";
-import { loadCourses, deleteCourse } from "../actions/courseActions";
+import * as courseActions from "../actions/courseActions";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 function CoursesPage() {
 
@@ -12,13 +14,18 @@ function CoursesPage() {
     useEffect(() => {
         courseStore.addChangeListener(onChange);
         if (courseStore.getCourses().length === 0) {
-            loadCourses();
+            courseActions.loadCourses();
         }
         return () =>  courseStore.removeChangeListener(onChange);
     }, []);
 
     function onChange(){
         setCourses(courseStore.getCourses());
+    }
+
+    function deleteCourse(courseId) {
+        courseActions.deleteCourse(courseId);
+        toast.success("Course deleted");
     }
 
     return (
