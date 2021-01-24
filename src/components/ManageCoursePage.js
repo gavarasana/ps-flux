@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
-import * as courseApi from "../api/courseApi";
+//import * as courseApi from "../api/courseApi";
+import courseStore from "../stores/courseStore";
+import * as courseActions from "../actions/courseActions";
 import { toast } from "react-toastify";
 
 const ManageCoursePage = (props) => {
@@ -13,16 +15,28 @@ const ManageCoursePage = (props) => {
     category: "",
   });
 
+  const [courses, setCourses] = useState(courseStore.getCourses());
+
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    courseStore.addChangeListener(onChange);
     const _slug = props.match.params.slug;
-    if (_slug) {
-      courseApi.getCoursesBySlug(_slug).then(_course => setCourse(_course));
+    if (courses.length === 0){
+      courseActions.loadCourses();
+    } else if (_slug) {
+      setCourse(courseStore.getCourseBySlug(_slug));      
     }
-  }, [props.match.params.slug]);
+    return () => courseStore.removeChangeListener(onChange);
+  }, [courses.length, props.match.params.slug]);
+
+
+  function onChange(){
+    setCourses(courseStore.getCourses());
+  }
 
   function isFormValid() {
+
     const _errors = {};
 
     if (!course.title) _errors.title = "Title is required.";
@@ -31,7 +45,7 @@ const ManageCoursePage = (props) => {
 
     setErrors(_errors);
 
-    return (Object.keys(errors).length === 0);
+    return (Object.keys(_errors).length === 0);
   }
 
 
@@ -42,7 +56,7 @@ const ManageCoursePage = (props) => {
   function onSubmit(event) {
     event.preventDefault();
     if (!isFormValid()) return;
-    courseApi.saveCourse(course).then(() => {
+    courseActions.saveCourse(course).then(() => {
       props.history.push("/courses");
       toast.success("Course saved");
     });
